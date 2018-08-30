@@ -1,0 +1,52 @@
+            for main_product_url in temp.split(";"):
+                if "window.product.articleVariant.data.ads.anid" in main_product_url:
+                    global variantid
+                    variantid = main_product_url[main_product_url.index("'") + 1:-1]
+                    target_url = response.url.split("?")[0]
+                    global to_string
+                    to_string = ''.join(map(str, target_url))
+                    global final_url
+                    final_url = to_string + "?variantid=" + variantid
+                    print("Link After become targer_url  :: " + final_url)
+                if "window.product.articleVariant.data.ads.aColorIds" in main_product_url:
+                    colors = main_product_url[main_product_url.index("=") + 1:-1] # list of colors available
+                    product_option = list()
+                    for index in colors.split(","):
+                        product_option.append(index[index.index("'")+1:-1])
+                    global final_url
+                    print(final_url)
+                    print(product_option)
+                    global to_string
+                    global variantid
+                    for element in product_option:
+                        #print(to_string)
+                        new_variant_id = variantid.replace(variantid[15:19], element)
+                        #print(new_variant_id)
+                        new_url_target = to_string + "?variantid=" + new_variant_id
+                        print(new_url_target)
+                        # product_url_list.append(to_string + "?variantid=" + )
+
+
+#                    print(product_url_list)
+                    # for element in product_option:
+                    #     #global length_of_color
+                    #     #length_of_color = len(element)
+                    #    # global result
+                    #     result = final_url.find(element)
+                    #     if result != -1:
+                    #         print("found at index :: ", result)
+                    #         print("==>  ", final_url[result:result + length_of_color])
+                    #         print(final_url[result + length_of_color:result])
+                    #         break
+                    # global result
+                    # global product_url_list
+                    # global length_of_color
+                    # product_url_list = list()
+                    # for element in product_option:
+                    #     print("final url :: ", final_url)
+                    #     oldString = final_url[result + length_of_color:result]
+                    #     print("old string :: \t", oldString)
+                    #     print(final_url.replace(oldString,element))
+
+
+
